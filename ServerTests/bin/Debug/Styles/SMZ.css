@@ -1,0 +1,6 @@
+.Player {
+    width: 0; height: 0;
+  border-bottom: 116px solid blue;
+  border-left: 58px solid transparent;
+  border-right: 58px solid transparent;
+}

@@ -1,0 +1,125 @@
+﻿using System;
+using System.Collections.Generic;
+using ClientScript.Network;
+using SharpKit.JavaScript;
+using SharpKit.Html;
+using SharpKit.jQuery;
+using SMZLib;
+
+namespace ClientScript
+{
+    [JsType(JsMode.Global, Filename = "res/ZombieGameClientScript.js")]
+    public class ZombieGameClientScript
+    {
+        private static IClientNetworkConnector _networkConnector;
+        private static List<Character> _characters;
+        // This is bad, and needs to be fixed ... 
+        public static List<Character> Characters
+        {
+            get { return _characters ?? (_characters = new List<Character>()); }
+        }
+		
+		private static void SetUpCharacterActions()
+		{
+			// Declared character actions should be shared between server and client automatically by declaration
+			// Maybe declare them in the lib instead
+			var moveRight = new CharacterAction();
+		}
+
+        public static void DefaultClient_Load()
+        {
+            _networkConnector = new JQueryAjaxNetworkConnector();
+
+            new jQuery(HtmlContext.document.body).append("Ready<br/>");
+
+            new jQuery(HtmlContext.document.body).keydown(DocumentKeyDown);
+
+            new jQuery(HtmlContext.document.body).keyup(DocumentKeyUp);
+
+            new jQuery(HtmlContext.document.body).mousedown(DocumentMouseDown);
+
+            new jQuery(HtmlContext.document.body).mousedown(DocumentMouseUp);
+
+            // Notify server of local player join
+            ConnectToServer();
+
+            // On server response, create local player assets
+            CreateCharacter();
+
+            // Load remote player data
+
+            HeartBeat.Initialize();
+
+            ClientRenderer.Initialize();
+        }
+
+        public static void ConnectToServer()
+        {
+            var ajaxSettings = new AjaxSettings
+            {
+                url = "localhost:1337/InitialConnection",
+                cache = false,
+                data = "{}",
+                dataType = "",
+                success = Success
+            };
+
+            //jQuery.ajax(ajaxSettings);
+            _networkConnector.SendQuery("InitialConnect", null);
+        }
+
+        private static void Success(object o, JsString jsString, jqXHR arg3)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void CreateCharacter()
+        {
+            if(_characters == null) _characters = new List<Character>();
+
+            var character = new Character();
+
+            _characters.Add(character);
+
+            ClientRenderer.CreateCharacterRenderer(character);
+        }
+
+        public static void ClearCharacters()
+        {
+            _characters = null;
+
+            ClientRenderer.ClearCharacterRenderers();
+        }
+
+        private static void DocumentKeyDown(Event arg)
+        {
+            PlayerInput.ProcessPlayerKeyboardInput(arg.which, true);
+        }
+
+        private static void DocumentKeyUp(Event arg)
+        {
+            PlayerInput.ProcessPlayerKeyboardInput(arg.which, false);
+        }
+
+        public static void DocumentMouseDown(Event arg)
+        {
+            console.log("Mouse button " + arg.button + " down at " + arg.clientX + ", " + arg.clientY);
+
+            PlayerInput.ProcessPlayerMouseInput(arg.keyCode, arg.clientX, arg.clientY, true);
+        }
+
+        public static void DocumentMouseUp(Event arg)
+        {
+            console.log("Mouse button " + arg.button + " up at " + arg.clientX + ", " + arg.clientY);
+
+            PlayerInput.ProcessPlayerMouseInput(arg.keyCode, arg.clientX, arg.clientY, false);
+        }
+    }
+
+    // For some reason SharpKit requires we do this to write to the console normally.
+    [JsType(JsMode.Prototype, Name = "console")]
+    public class console
+    {
+        public static void log(string message) { }
+    }
+}

@@ -1,0 +1,7 @@
+G:\FilePrograms\Dropbox\Projects\C#\SoManyZombies\SoManyZombies\bin\Debug\SoManyZombies.exe.config
+G:\FilePrograms\Dropbox\Projects\C#\SoManyZombies\SoManyZombies\bin\Debug\SoManyZombies.exe
+G:\FilePrograms\Dropbox\Projects\C#\SoManyZombies\SoManyZombies\bin\Debug\SoManyZombies.pdb
+G:\FilePrograms\Dropbox\Projects\C#\SoManyZombies\SoManyZombies\obj\Debug\SoManyZombies.csprojResolveAssemblyReference.cache
+G:\FilePrograms\Dropbox\Projects\C#\SoManyZombies\SoManyZombies\obj\Debug\SoManyZombies.exe
+G:\FilePrograms\Dropbox\Projects\C#\SoManyZombies\SoManyZombies\obj\Debug\SoManyZombies.pdb
+G:\FilePrograms\Dropbox\Projects\C#\SoManyZombies\SoManyZombies\bin\Debug\Styles\SMZ.css
