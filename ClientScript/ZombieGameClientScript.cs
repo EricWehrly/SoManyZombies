@@ -23,7 +23,7 @@ namespace ClientScript
 		{
 			// Declared character actions should be shared between server and client automatically by declaration
 			// Maybe declare them in the lib instead
-			var moveRight = new CharacterAction();
+			//var moveRight = new CharacterAction();
 		}
 
         public static void DefaultClient_Load()

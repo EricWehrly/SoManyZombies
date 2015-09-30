@@ -1,7 +1,9 @@
-﻿using SharpKit.jQuery;
+﻿using SharpKit.JavaScript;
+using SharpKit.jQuery;
 
 namespace ClientScript.Network
 {
+    [JsType(JsMode.Clr, Filename = "../res/Network.js")]
     public class JQueryAjaxNetworkConnector : IClientNetworkConnector
     {
         public void SendCommand(string command, object data)

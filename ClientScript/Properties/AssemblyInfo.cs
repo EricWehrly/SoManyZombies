@@ -34,3 +34,9 @@ using SharpKit.JavaScript;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+[assembly: JsMergedFile(Filename = "res/CombinedZombieGameClientScript.js", Sources = new[]
+{
+   "res/Network.js",
+   "res/ZombieGameClientScript.js",
+})]
