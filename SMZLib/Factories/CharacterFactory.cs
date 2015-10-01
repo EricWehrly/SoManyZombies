@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SharpKit.JavaScript;
+using SMZLib.Entities;
 
-namespace SMZLib
+namespace SMZLib.Factories
 {
-    public static class GameData
+    [JsType(JsMode.Clr, Filename = "../res/Factories.js")]
+    public static class CharacterFactory
     {
         private static Dictionary<string, Character> _playerCharacters = new Dictionary<string, Character>();
 

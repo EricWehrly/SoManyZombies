@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using Nancy;
 using Newtonsoft.Json;
-using SMZLib;
+using SMZLib.Entities;
+using SMZLib.Factories;
 
 namespace SoManyZombies.Requests
 {
@@ -34,11 +35,11 @@ namespace SoManyZombies.Requests
 
             var character = (Character)JsonConvert.DeserializeObject<Character>(characterString);
 
-            var dataPlayer = GameData.Players.FirstOrDefault(player => player.Id == character.Id);
+            var dataPlayer = CharacterFactory.Players.FirstOrDefault(player => player.Id == character.Id);
 
-            if (!GameData.PlayerExists(sessionId)) return "Invalid session id.";
+            if (!CharacterFactory.PlayerExists(sessionId)) return "Invalid session id.";
 
-            var sessionCharacter = GameData.GetPlayerCharacter(sessionId);
+            var sessionCharacter = CharacterFactory.GetPlayerCharacter(sessionId);
 
             if (character.Id != sessionCharacter.Id)
             {

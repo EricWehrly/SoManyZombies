@@ -4,7 +4,8 @@ using Nancy.Testing;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using SMZLib;
-using SoManyZombies;
+using SMZLib.Entities;
+using SMZLib.Factories;
 using SoManyZombies.Requests;
 
 namespace ServerTests
@@ -20,7 +21,7 @@ namespace ServerTests
         [SetUp]
         public void SetUp()
         {
-            GameData.ClearPlayers();
+            CharacterFactory.ClearPlayers();
 
             InitialConnect(out _localPlayerId);
         }
@@ -34,7 +35,7 @@ namespace ServerTests
 
             SendCharacterUpdate();
 
-            var dataPlayerDestination = GameData.Players.FirstOrDefault(player => player.Id == _localPlayer.Id).Destination;
+            var dataPlayerDestination = CharacterFactory.Players.FirstOrDefault(player => player.Id == _localPlayer.Id).Destination;
 
             dataPlayerDestination.X.Should().Be(newDestination.X);
 
@@ -50,7 +51,7 @@ namespace ServerTests
 
             SendCharacterUpdate();
 
-            var dataPlayerLookTarget = GameData.Players.FirstOrDefault(player => player.Id == _localPlayer.Id).LookTarget;
+            var dataPlayerLookTarget = CharacterFactory.Players.FirstOrDefault(player => player.Id == _localPlayer.Id).LookTarget;
 
             dataPlayerLookTarget.X.Should().Be(newLookTarget.X);
 
@@ -105,7 +106,7 @@ namespace ServerTests
 
             var projectileId = JsonConvert.DeserializeObject<int>(response.Body.AsString());
 
-            var createdProjectile = GameData.Projectiles.FirstOrDefault(projectile => projectile.Id == projectileId);
+            var createdProjectile = CharacterFactory.Projectiles.FirstOrDefault(projectile => projectile.Id == projectileId);
 
             createdProjectile.Position.X.Should().Be(_localPlayer.Position.X);
 
@@ -137,7 +138,7 @@ namespace ServerTests
                 with.FormValue("SessionId", "Not a valid session token");
             });
 
-            var dataPlayerDestination = GameData.Players.FirstOrDefault(player => player.Id == _localPlayer.Id).Destination;
+            var dataPlayerDestination = CharacterFactory.Players.FirstOrDefault(player => player.Id == _localPlayer.Id).Destination;
 
             dataPlayerDestination.X.Should().Be(initialDestination.X);
 
@@ -218,9 +219,9 @@ namespace ServerTests
 
         private void SetPlayerCount(int newCount)
         {
-            GameData.ClearPlayers();
+            CharacterFactory.ClearPlayers();
 
-            for (var i = 0; i < newCount; i++) GameData.AddPlayer();
+            for (var i = 0; i < newCount; i++) CharacterFactory.AddPlayer();
         }
 
         // Need to add tests for projectiles, health, damage, collision...

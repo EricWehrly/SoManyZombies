@@ -6,11 +6,11 @@ using SharpKit.JavaScript;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SMZLib")]
+[assembly: AssemblyTitle("TowerDefenseClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SharpKit Ltd.")]
-[assembly: AssemblyProduct("SMZLib")]
+[assembly: AssemblyProduct("TowerDefenseClient")]
 [assembly: AssemblyCopyright("Copyright © SharpKit Ltd. 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -34,11 +34,3 @@ using SharpKit.JavaScript;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: JsMergedFile(Filename = "res/CombinedSMZLib.js", Sources = new[]
-{
-   "res/SMZLib.js",
-   "res/Entities.js",
-   "res/Factories.js",
-   "res/Types.js",
-})]

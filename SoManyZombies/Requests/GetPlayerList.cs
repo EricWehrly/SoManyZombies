@@ -1,6 +1,7 @@
 ﻿using Nancy;
 using Newtonsoft.Json;
 using SMZLib;
+using SMZLib.Factories;
 
 namespace SoManyZombies.Requests
 {
@@ -13,7 +14,7 @@ namespace SoManyZombies.Requests
 
         private object ReturnPlayerList(dynamic parameters)
         {
-            return JsonConvert.SerializeObject(GameData.Players);
+            return JsonConvert.SerializeObject(CharacterFactory.Players);
         }
     }
 }

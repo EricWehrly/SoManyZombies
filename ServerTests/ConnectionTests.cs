@@ -2,8 +2,8 @@
 using Nancy.Testing;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using SMZLib;
-using SoManyZombies;
+using SMZLib.Entities;
+using SMZLib.Factories;
 using SoManyZombies.Requests;
 
 namespace ServerTests
@@ -15,7 +15,7 @@ namespace ServerTests
         [SetUp]
         public void SetUp()
         {
-            GameData.ClearPlayers();
+            CharacterFactory.ClearPlayers();
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace ServerTests
 
             browser.Get("/InitialConnect", with => with.HttpRequest());
 
-            GameData.Players.Length.Should().Be(1);
+            CharacterFactory.Players.Length.Should().Be(1);
         }
 
         [Test]
@@ -86,9 +86,9 @@ namespace ServerTests
         
         private void SetPlayerCount(int newCount)
         {
-            GameData.ClearPlayers();
+            CharacterFactory.ClearPlayers();
 
-            for (var i = 0; i < newCount; i++) GameData.AddPlayer();
+            for (var i = 0; i < newCount; i++) CharacterFactory.AddPlayer();
         }
 
         private void InitialConnect()

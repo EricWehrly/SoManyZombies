@@ -4,7 +4,7 @@ using ClientScript.Network;
 using SharpKit.JavaScript;
 using SharpKit.Html;
 using SharpKit.jQuery;
-using SMZLib;
+using SMZLib.Entities;
 
 namespace ClientScript
 {
@@ -14,7 +14,7 @@ namespace ClientScript
         private static IClientNetworkConnector _networkConnector;
         private static List<Character> _characters;
         // This is bad, and needs to be fixed ... 
-        public static List<Character> Characters
+        private static List<Character> Characters
         {
             get { return _characters ?? (_characters = new List<Character>()); }
         }

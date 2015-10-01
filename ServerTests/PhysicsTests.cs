@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using SMZLib;
+using SMZLib.Entities;
+using SMZLib.Factories;
 
 namespace ServerTests
 {
@@ -15,9 +17,9 @@ namespace ServerTests
         [SetUp]
         public void SetUp()
         {
-            GameData.ClearPlayers();
+            CharacterFactory.ClearPlayers();
 
-            GameData.ClearProjectiles();
+            CharacterFactory.ClearProjectiles();
 
             SetUpTwoPlayers();
         }
@@ -142,11 +144,11 @@ namespace ServerTests
 
             var loopCount = playerTwoX / projectileSpeed;
 
-            GameData.Projectiles.Length.Should().Be(1);
+            CharacterFactory.Projectiles.Length.Should().Be(1);
 
             for (var i = 0; i < loopCount; i++) PhysicsEngine.MainLoop();
 
-            GameData.Projectiles.Length.Should().Be(0);
+            CharacterFactory.Projectiles.Length.Should().Be(0);
         }
 
         [Test]
@@ -180,7 +182,7 @@ namespace ServerTests
 
             var projectileDamage = 10;
 
-            GameData.Players.Length.Should().Be(2);
+            CharacterFactory.Players.Length.Should().Be(2);
 
             _playerTwo.Health = projectileDamage;
 
@@ -188,22 +190,22 @@ namespace ServerTests
 
             var loopCount = playerTwoX / projectileSpeed;
 
-            GameData.Players.Length.Should().Be(2);
+            CharacterFactory.Players.Length.Should().Be(2);
 
             for (var i = 0; i < loopCount; i++) PhysicsEngine.MainLoop();
 
-            GameData.Players.Length.Should().Be(1);
+            CharacterFactory.Players.Length.Should().Be(1);
         }
 
         private void SetUpTwoPlayers()
         {
-            _playerOneSession = GameData.AddPlayer();
+            _playerOneSession = CharacterFactory.AddPlayer();
 
-            _playerOne = GameData.GetPlayerCharacter(_playerOneSession);
+            _playerOne = CharacterFactory.GetPlayerCharacter(_playerOneSession);
 
-            var playerTwoId = GameData.AddPlayer();
+            var playerTwoId = CharacterFactory.AddPlayer();
 
-            _playerTwo = GameData.GetPlayerCharacter(playerTwoId);
+            _playerTwo = CharacterFactory.GetPlayerCharacter(playerTwoId);
         }
 
         private void ShootPlayerTwo(int playerTwoX, int projectileSpeed)
@@ -214,7 +216,7 @@ namespace ServerTests
 
             _playerOne.LookTarget = _playerTwo.Position;
 
-            GameData.CreateProjectile(_playerOne, projectileSpeed);
+            CharacterFactory.CreateProjectile(_playerOne, projectileSpeed);
         }
     }
 }

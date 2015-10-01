@@ -2,6 +2,7 @@
 using SharpKit.Html;
 using SharpKit.JavaScript;
 using SMZLib;
+using SMZLib.Entities;
 
 namespace ClientScript
 {

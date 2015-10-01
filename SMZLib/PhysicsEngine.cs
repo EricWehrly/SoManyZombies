@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using SharpKit.JavaScript;
+using SMZLib.Entities;
+using SMZLib.Factories;
 
 namespace SMZLib
 {
@@ -9,12 +11,12 @@ namespace SMZLib
     {
         public static void MainLoop()
         {
-            foreach (var projectile in GameData.Projectiles)
+            foreach (var projectile in CharacterFactory.Projectiles)
             {
                 MoveEntityTowardDestination(projectile);
             }
 
-            foreach (var player in GameData.Players)
+            foreach (var player in CharacterFactory.Players)
             {
                 //player.Position
                 MoveEntityTowardDestination(player);
@@ -62,11 +64,11 @@ namespace SMZLib
 
         private static void CheckEntityCollisions()
         {
-            foreach (var player in GameData.Characters)
+            foreach (var player in CharacterFactory.Characters)
             {
-                if(!GameData.Characters.Contains(player)) continue;
+                if (!CharacterFactory.Characters.Contains(player)) continue;
 
-                foreach (var otherPlayer in GameData.Characters)
+                foreach (var otherPlayer in CharacterFactory.Characters)
                 {
                     if (player.Id == otherPlayer.Id) continue;
 

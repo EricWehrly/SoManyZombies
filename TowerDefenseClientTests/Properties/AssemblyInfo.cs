@@ -1,17 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using SharpKit.JavaScript;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SMZLib")]
+[assembly: AssemblyTitle("TowerDefenseClientTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SharpKit Ltd.")]
-[assembly: AssemblyProduct("SMZLib")]
-[assembly: AssemblyCopyright("Copyright © SharpKit Ltd. 2010")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("TowerDefenseClientTests")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +20,7 @@ using SharpKit.JavaScript;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f52d909d-b3c5-4899-94a5-1a2271a4aad5")]
+[assembly: Guid("caea2f02-55aa-4152-8702-bfde78bce26e")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -30,15 +29,8 @@ using SharpKit.JavaScript;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Revision and Build Numbers 
+// You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: JsMergedFile(Filename = "res/CombinedSMZLib.js", Sources = new[]
-{
-   "res/SMZLib.js",
-   "res/Entities.js",
-   "res/Factories.js",
-   "res/Types.js",
-})]

@@ -1,6 +1,7 @@
 ﻿using System;
 using SharpKit.JavaScript;
 using SMZLib;
+using SMZLib.Entities;
 
 namespace ClientScript
 {

@@ -1,5 +1,5 @@
 ﻿using Nancy;
-using SMZLib;
+using SMZLib.Factories;
 
 namespace SoManyZombies.Requests
 {
@@ -15,11 +15,11 @@ namespace SoManyZombies.Requests
         {
             var sessionId = Request.Form.SessionId;
 
-            if (!GameData.PlayerExists(sessionId)) return "Invalid session id.";
+            if (!CharacterFactory.PlayerExists(sessionId)) return "Invalid session id.";
 
-            var sessionCharacter = GameData.GetPlayerCharacter(sessionId);
+            var sessionCharacter = CharacterFactory.GetPlayerCharacter(sessionId);
 
-            var projectileId = GameData.CreateProjectile(sessionCharacter, 3);
+            var projectileId = CharacterFactory.CreateProjectile(sessionCharacter, 3);
 
             return projectileId.ToString();
         }

@@ -1,7 +1,7 @@
-﻿using System;
-using Nancy;
+﻿using Nancy;
 using Newtonsoft.Json;
 using SMZLib;
+using SMZLib.Factories;
 
 namespace SoManyZombies.Requests
 {
@@ -14,7 +14,7 @@ namespace SoManyZombies.Requests
 
         private object InitialConnectResponse(dynamic parameters)
         {
-            var newPlayer = GameData.AddPlayer();
+            var newPlayer = CharacterFactory.AddPlayer();
             //GameData.Players.Add(new Character());
 
             // GameData.Players[GameData.Players.Count - 1].Id = GameData.NextPlayerId;
@@ -22,7 +22,7 @@ namespace SoManyZombies.Requests
             var returnVal = new ConnectPacket
             {
                 SessionId = newPlayer,
-                CharacterId = GameData.GetPlayerCharacter(newPlayer).Id
+                CharacterId = CharacterFactory.GetPlayerCharacter(newPlayer).Id
             };
 
             //return JsonConvert.SerializeObject(new Tuple<Guid, Character[]>(newPlayer, GameData.Players));
