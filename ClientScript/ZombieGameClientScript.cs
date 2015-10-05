@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using ClientScript.Network;
 using SharpKit.JavaScript;
 using SharpKit.Html;
 using SharpKit.jQuery;
-using SMZLib.Entities;
 
 namespace ClientScript
 {
@@ -12,13 +10,7 @@ namespace ClientScript
     public class ZombieGameClientScript
     {
         private static IClientNetworkConnector _networkConnector;
-        private static List<Character> _characters;
-        // This is bad, and needs to be fixed ... 
-        private static List<Character> Characters
-        {
-            get { return _characters ?? (_characters = new List<Character>()); }
-        }
-		
+
 		private static void SetUpCharacterActions()
 		{
 			// Declared character actions should be shared between server and client automatically by declaration
@@ -44,7 +36,7 @@ namespace ClientScript
             ConnectToServer();
 
             // On server response, create local player assets
-            CreateCharacter();
+            // CreateCharacter();
 
             // Load remote player data
 
@@ -71,24 +63,6 @@ namespace ClientScript
         private static void Success(object o, JsString jsString, jqXHR arg3)
         {
             throw new NotImplementedException();
-        }
-
-        public static void CreateCharacter()
-        {
-            if(_characters == null) _characters = new List<Character>();
-
-            var character = new Character();
-
-            _characters.Add(character);
-
-            ClientRenderer.CreateCharacterRenderer(character);
-        }
-
-        public static void ClearCharacters()
-        {
-            _characters = null;
-
-            ClientRenderer.ClearCharacterRenderers();
         }
 
         private static void DocumentKeyDown(Event arg)

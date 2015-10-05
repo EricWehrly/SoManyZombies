@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using SharpKit.JavaScript;
 using SMZLib;
+using SMZLib.Entities;
+using SMZLib.Factories;
 
 namespace ClientScript
 {
@@ -45,7 +47,7 @@ namespace ClientScript
             x = ConvertXFromPixelsToTiles(x);
             y = ConvertYFromPixelsToTiles(y);
 
-            ZombieGameClientScript.Characters[0].Destination = new Point(x, y);
+            CharacterFactory.GetLocalPlayerCharacter().Destination = new Point(x, y);
         }
 
         private static int ConvertXFromPixelsToTiles(int x)
@@ -68,8 +70,8 @@ namespace ClientScript
         {
             newY = (int)ClientRenderer.WindowRenderSize.Height - newY;
 
-            ZombieGameClientScript.Characters[0].LookTarget.X = newX / (int) ClientRenderer.StageTileSize.Width;
-            ZombieGameClientScript.Characters[0].LookTarget.Y = ConvertYFromPixelsToTiles(newY);
+            CharacterFactory.GetLocalPlayerCharacter().LookTarget.X = newX / (int) ClientRenderer.StageTileSize.Width;
+            CharacterFactory.GetLocalPlayerCharacter().LookTarget.Y = ConvertYFromPixelsToTiles(newY);
         }
 
         public static void ProcessPlayerMovementInput()
@@ -82,34 +84,34 @@ namespace ClientScript
 
             if (_pressedKeys.Contains(_playerMovementKeys["Down"])) MovePlayerDown();
 
-            if (ZombieGameClientScript.Characters[0].Destination.X < 0)
-                ZombieGameClientScript.Characters[0].Destination.X = 0;
-            if (ZombieGameClientScript.Characters[0].Destination.Y < 0)
-                ZombieGameClientScript.Characters[0].Destination.Y = 0;
+            if (CharacterFactory.GetLocalPlayerCharacter().Destination.X < 0)
+                CharacterFactory.GetLocalPlayerCharacter().Destination.X = 0;
+            if (CharacterFactory.GetLocalPlayerCharacter().Destination.Y < 0)
+                CharacterFactory.GetLocalPlayerCharacter().Destination.Y = 0;
         }
 
         private static void MovePlayerLeft()
         {
-            ZombieGameClientScript.Characters[0].Destination.X = ZombieGameClientScript.Characters[0].Position.X -
-                                                        (int)ZombieGameClientScript.Characters[0].Speed;
+            CharacterFactory.GetLocalPlayerCharacter().Destination.X = CharacterFactory.GetLocalPlayerCharacter().Position.X -
+                                                        (int)CharacterFactory.GetLocalPlayerCharacter().Speed;
         }
 
         private static void MovePlayerRight()
         {
-            ZombieGameClientScript.Characters[0].Destination.X = ZombieGameClientScript.Characters[0].Position.X +
-                                                        (int)ZombieGameClientScript.Characters[0].Speed;
+            CharacterFactory.GetLocalPlayerCharacter().Destination.X = CharacterFactory.GetLocalPlayerCharacter().Position.X +
+                                                        (int)CharacterFactory.GetLocalPlayerCharacter().Speed;
         }
 
         private static void MovePlayerUp()
         {
-            ZombieGameClientScript.Characters[0].Destination.Y = ZombieGameClientScript.Characters[0].Position.Y +
-                                                        (int)ZombieGameClientScript.Characters[0].Speed;
+            CharacterFactory.GetLocalPlayerCharacter().Destination.Y = CharacterFactory.GetLocalPlayerCharacter().Position.Y +
+                                                        (int)CharacterFactory.GetLocalPlayerCharacter().Speed;
         }
 
         private static void MovePlayerDown()
         {
-            ZombieGameClientScript.Characters[0].Destination.Y = ZombieGameClientScript.Characters[0].Position.Y -
-                                                        (int)ZombieGameClientScript.Characters[0].Speed;
+            CharacterFactory.GetLocalPlayerCharacter().Destination.Y = CharacterFactory.GetLocalPlayerCharacter().Position.Y -
+                                                        (int)CharacterFactory.GetLocalPlayerCharacter().Speed;
         }
     }
 }

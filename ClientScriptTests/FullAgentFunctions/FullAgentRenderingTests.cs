@@ -7,8 +7,6 @@ namespace ClientScriptTests.FullAgentFunctions
 {
     public class FullAgentRenderingTests
     {
-        private Character _localPlayer;
-
         private const int ExpectedPlayerSpriteHeight = 40;
         private const int ExpectedPlayerSpriteWidth = 40;
         private const int TestScreenHeight = 1080;
@@ -18,15 +16,6 @@ namespace ClientScriptTests.FullAgentFunctions
 
         private int TestTileXCount { get { return (TestScreenWidth / TestTileWidth) - 1; } }
         private int TestTileYCount { get { return (TestScreenHeight/TestTileHeight) - 1; } }
-
-        [SetUp]
-        public void SetUp()
-        {
-            ZombieGameClientScript.ClearCharacters();
-            ZombieGameClientScript.CreateCharacter();
-
-            _localPlayer = ZombieGameClientScript.Characters[0];
-        }
 
         [Test]
         public void LocalPlayerDimensionTest()

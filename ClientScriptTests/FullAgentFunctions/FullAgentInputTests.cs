@@ -2,25 +2,16 @@
 using NUnit.Framework;
 using ClientScript;
 using SMZLib;
+using SMZLib.Factories;
 
 namespace ClientScriptTests.FullAgentFunctions
 {
-    public class FullAgentInputTests
+    public class FullAgentInputTests : ClientScriptTest
     {
-        private Character _localPlayer;
         private const int TestTileHeight = 40;
         private const int TestTileWidth = 40;
         private const int TestScreenWidth = 1920;
         private const int TestScreenHeight = 1080;
-
-        [SetUp]
-        public void SetUp()
-        {
-            ZombieGameClientScript.ClearCharacters();
-            ZombieGameClientScript.CreateCharacter();
-
-            _localPlayer = ZombieGameClientScript.Characters[0];
-        }
 
         [Test]
         public void PressingWMovesLocalPlayerUp()
@@ -33,7 +24,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             HeartBeat.PhysicsLoop();
 
-            ZombieGameClientScript.Characters[0].Destination.Y.Should().Be(11);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.Y.Should().Be(11);
         }
 
         [Test]
@@ -49,7 +40,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             HeartBeat.PhysicsLoop();
 
-            ZombieGameClientScript.Characters[0].Destination.X.Should().Be(3);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.X.Should().Be(3);
         }
 
         // Works fine when ran by itself, not when ran grouped...
@@ -68,7 +59,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             HeartBeat.PhysicsLoop();
 
-            ZombieGameClientScript.Characters[0].Destination.Y.Should().Be(9);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.Y.Should().Be(9);
         }
 
         [Test]
@@ -84,7 +75,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             HeartBeat.PhysicsLoop();
 
-            ZombieGameClientScript.Characters[0].Destination.X.Should().Be(2);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.X.Should().Be(2);
         }
 
         [Test]
@@ -112,7 +103,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             HeartBeat.PhysicsLoop();
 
-            ZombieGameClientScript.Characters[0].Destination.X.Should().Be(0);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.X.Should().Be(0);
         }
 
         [Test]
@@ -136,7 +127,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             PlayerInput.ProcessPlayerMouseInput(0, x, 0, true);
 
-            ZombieGameClientScript.Characters[0].Destination.X.Should().Be(5);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.X.Should().Be(5);
         }
 
         [Test]
@@ -148,7 +139,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             PlayerInput.ProcessPlayerMouseInput(0, 0, TestScreenHeight, true);
 
-            ZombieGameClientScript.Characters[0].Destination.Y.Should().Be(expectedY);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.Y.Should().Be(expectedY);
         }
 
         [Test]
@@ -160,7 +151,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
             PlayerInput.ProcessPlayerMouseInput(0, 0, 0, true);
 
-            ZombieGameClientScript.Characters[0].Destination.Y.Should().Be(expectedY);
+            CharacterFactory.GetLocalPlayerCharacter().Destination.Y.Should().Be(expectedY);
         }
 
         [Test]
@@ -173,8 +164,8 @@ namespace ClientScriptTests.FullAgentFunctions
 
             PlayerInput.ProcessPlayerMouseMovement(0, 0);
 
-            ZombieGameClientScript.Characters[0].LookTarget.X.Should().Be(expectedX);
-            ZombieGameClientScript.Characters[0].LookTarget.Y.Should().Be(expectedY);
+            CharacterFactory.GetLocalPlayerCharacter().LookTarget.X.Should().Be(expectedX);
+            CharacterFactory.GetLocalPlayerCharacter().LookTarget.Y.Should().Be(expectedY);
         }
 
         [Test]
@@ -189,8 +180,8 @@ namespace ClientScriptTests.FullAgentFunctions
 
             PlayerInput.ProcessPlayerMouseMovement(TestScreenWidth, TestScreenHeight);
 
-            ZombieGameClientScript.Characters[0].LookTarget.X.Should().Be(expectedX);
-            ZombieGameClientScript.Characters[0].LookTarget.Y.Should().Be(expectedY);
+            CharacterFactory.GetLocalPlayerCharacter().LookTarget.X.Should().Be(expectedX);
+            CharacterFactory.GetLocalPlayerCharacter().LookTarget.Y.Should().Be(expectedY);
         }
 
         [Test]

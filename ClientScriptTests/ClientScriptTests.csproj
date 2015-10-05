@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientScriptTest.cs" />
     <Compile Include="EntityMovementTests.cs" />
     <Compile Include="FullAgentFunctions\FullAgentInputTests.cs" />
     <Compile Include="FullAgentFunctions\FullAgentRenderingTests.cs" />

@@ -1,8 +1,8 @@
 ﻿using System;
 using SharpKit.Html;
 using SharpKit.JavaScript;
-using SMZLib;
 using SMZLib.Entities;
+using SMZLib.Factories;
 
 namespace ClientScript
 {
@@ -19,13 +19,14 @@ namespace ClientScript
             HtmlContext.window.setInterval(PhysicsLoop, HeartBeatTimeOut);
         }
 
+        // TODO: This should be registered into...
         public static void PhysicsLoop()
         {
             PlayerInput.ProcessPlayerMovementInput();
 
             // (No need right now to calculate speed, but it would go here)
 
-            foreach (var player in ZombieGameClientScript.Characters)
+            foreach (var player in CharacterFactory.Characters)
             {
                 //player.Position
                 MoveEntityTowardDestination(player);

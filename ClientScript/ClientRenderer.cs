@@ -3,11 +3,12 @@ using SharpKit.Html;
 using SharpKit.JavaScript;
 using SMZLib;
 using SMZLib.Entities;
+using SMZLib.Factories;
 
 namespace ClientScript
 {
     [JsType(JsMode.Clr, Filename = "res/ZombieGameClientScript.js")]
-    public static class ClientRenderer
+    public static class ClientRenderer // : IRenderer?
     {
         private static List<CanvasCharacterRenderer> _characterRenderers;
 
@@ -72,6 +73,7 @@ namespace ClientScript
             canvas.height = HtmlContext.window.innerHeight;
         }
 
+        /*
         public static void CreateCharacterRenderer(Character character)
         {
             if(_characterRenderers == null) _characterRenderers = new List<CanvasCharacterRenderer>();
@@ -82,15 +84,16 @@ namespace ClientScript
         {
             _characterRenderers = new List<CanvasCharacterRenderer>();
         }
+        */
 
         public static void Render()
         {
             ClearCanvas();
 
-            foreach (var characterRenderer in _characterRenderers)
+            foreach (var character in CharacterFactory.Characters)
             {
                 //DrawCharacter(characterRenderer);
-                DrawRotatedCharacter(characterRenderer);
+                DrawRotatedCharacter(new CanvasCharacterRenderer(character));
             }
         }
 

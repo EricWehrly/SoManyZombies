@@ -28,6 +28,11 @@ namespace SMZLib.Factories
             return _playerCharacters.Keys.Contains(playerId);
         }
 
+        public static Character GetLocalPlayerCharacter()
+        {
+            return Players[0];
+        }
+
         public static Character GetPlayerCharacter(string playerId)
         {
             return _playerCharacters[playerId];

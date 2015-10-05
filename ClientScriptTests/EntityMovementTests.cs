@@ -5,19 +5,8 @@ using SMZLib;
 
 namespace ClientScriptTests
 {
-    public class EntityMovementTests
+    public class EntityMovementTests : ClientScriptTest
     {
-        private Character _localPlayer;
-
-        [SetUp]
-        public void SetUp()
-        {
-            ZombieGameClientScript.ClearCharacters();
-            ZombieGameClientScript.CreateCharacter();
-
-            _localPlayer = ZombieGameClientScript.Characters[0];
-        }
-
         [Test]
         public void EntityWithDestinationMovesTowardIt()
         {
