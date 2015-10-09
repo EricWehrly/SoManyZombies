@@ -9,7 +9,7 @@ namespace ClientScriptTests
         protected Character _localPlayer;
 
         [SetUp]
-        public void SetUp()
+        public void ClientScriptSetUp()
         {
             CharacterFactory.ClearPlayers();
 

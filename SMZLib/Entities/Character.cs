@@ -38,7 +38,9 @@ namespace SMZLib.Entities
 
             Height = 1;
 
-            Id = _characterCount++;
+            //Id = _characterCount++;
+            _characterCount += 1;
+            Id = _characterCount;
         }
 
         public int Health

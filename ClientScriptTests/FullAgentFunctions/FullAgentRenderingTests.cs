@@ -5,7 +5,7 @@ using SMZLib;
 
 namespace ClientScriptTests.FullAgentFunctions
 {
-    public class FullAgentRenderingTests
+    public class FullAgentRenderingTests : ClientScriptTest
     {
         private const int ExpectedPlayerSpriteHeight = 40;
         private const int ExpectedPlayerSpriteWidth = 40;
@@ -16,6 +16,27 @@ namespace ClientScriptTests.FullAgentFunctions
 
         private int TestTileXCount { get { return (TestScreenWidth / TestTileWidth) - 1; } }
         private int TestTileYCount { get { return (TestScreenHeight/TestTileHeight) - 1; } }
+
+        //private Mock<CanvasRenderingContext2D> _mockCanvasRenderingContext;
+
+        [SetUp]
+        public void SetUp()
+        {
+            ClientRenderer.SyncCharacterRenderers();
+        }
+
+        [Test]
+        [Ignore]
+        public void ShouldProduceOrderedCharacterIds()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void OrderedCharacterIdsShouldMatchCharacterFactory()
+        {
+            Assert.Fail();
+        }
 
         [Test]
         public void LocalPlayerDimensionTest()
@@ -182,6 +203,30 @@ namespace ClientScriptTests.FullAgentFunctions
             ClientRenderer.CharacterRenderers[0].RenderRotation.Should().Be(45);
 
             Assert.Fail();
+        }
+
+        [Test]
+        [Ignore]
+        public void RendererCountMatchesCharacterCountWithTwoCharacters()
+        {
+            // Make character 1
+
+            // Make character 2
+
+            // Match renderer count
+
+            Assert.Fail();
+        }
+
+        [Test]
+        [Ignore]
+        public void RendererCountMatchesCharacterCountAfterKilledCharacters()
+        {
+            // Make character 1, 2, 3
+
+            // Kill character 2
+
+            // Renderer IDs match character IDs
         }
 
         private static void CalculatePlayerRenderPosition()

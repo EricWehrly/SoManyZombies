@@ -19,6 +19,8 @@ namespace SMZLib.Factories
 
         public static Character[] Characters { get { return Players.Concat(Projectiles).ToArray(); } }
 
+        public static long CharacterIdSum { get; private set; }
+
         private static int _nextPlayerId;
 
         public static int NextPlayerId { get { return _nextPlayerId++; } }
@@ -46,17 +48,23 @@ namespace SMZLib.Factories
 
             _playerCharacters.Add(playerGuid, newCharacter);
 
+            RecalculateCharacterIdSum();
+
             return playerGuid;
         }
 
         public static void ClearPlayers()
         {
             _playerCharacters = new Dictionary<string, Character>();
+
+            RecalculateCharacterIdSum();
         }
 
         public static void ClearProjectiles()
         {
             _projectiles = new Dictionary<int, Character>();
+
+            RecalculateCharacterIdSum();
         }
 
         public static int CreateProjectile(Character owner, float speed)
@@ -72,6 +80,8 @@ namespace SMZLib.Factories
             //projectile.Health = 10;
 
             _projectiles.Add(owner.Id, projectile);
+
+            RecalculateCharacterIdSum();
 
             return projectile.Id;
         }
@@ -97,6 +107,20 @@ namespace SMZLib.Factories
                     return;
                 }
             }
+
+            RecalculateCharacterIdSum();
+        }
+
+        private static void RecalculateCharacterIdSum()
+        {
+            long newSum = 0;
+
+            foreach (var character in Characters)
+            {
+                newSum += character.Id;
+            }
+
+            CharacterIdSum = newSum;
         }
     }
 }

@@ -11,9 +11,13 @@ namespace ClientScript
     public static class ClientRenderer // : IRenderer?
     {
         private static List<CanvasCharacterRenderer> _characterRenderers;
+        //private static Dictionary<int, CanvasCharacterRenderer> _characterRenderers;
+
+        public static long CharacterRendererIdSum { get; private set; }
 
         // Make some unit tests to make sure that this thing has comperable contents to the character list
-        public static List<CanvasCharacterRenderer> CharacterRenderers { get { return _characterRenderers; } }
+        //public static List<CanvasCharacterRenderer> CharacterRenderers { get { return new List<CanvasCharacterRenderer>(_characterRenderers.Values); } }
+        public static List<CanvasCharacterRenderer> CharacterRenderers { get { return _characterRenderers;  }}
 
         private static CanvasRenderingContext2D _canvasRenderingContext2D;
 
@@ -41,6 +45,8 @@ namespace ClientScript
             _playerImage = new HtmlImageElement();
             _playerImage.src = "res/Square.gif";
             //HtmlContext.document.body.appendChild(_playerImage);
+
+            _characterRenderers = new List<CanvasCharacterRenderer>();
 
             Resize();
         }
@@ -73,28 +79,43 @@ namespace ClientScript
             canvas.height = HtmlContext.window.innerHeight;
         }
 
-        /*
-        public static void CreateCharacterRenderer(Character character)
+
+        private static void CreateCharacterRenderer(Character character)
         {
             if(_characterRenderers == null) _characterRenderers = new List<CanvasCharacterRenderer>();
             _characterRenderers.Add(new CanvasCharacterRenderer(character));
         }
 
-        public static void ClearCharacterRenderers()
+        private static void ClearCharacterRenderers()
         {
             _characterRenderers = new List<CanvasCharacterRenderer>();
         }
-        */
 
         public static void Render()
         {
             ClearCanvas();
 
-            foreach (var character in CharacterFactory.Characters)
+            SyncCharacterRenderers();
+
+            foreach (var characterRenderer in _characterRenderers)
             {
                 //DrawCharacter(characterRenderer);
-                DrawRotatedCharacter(new CanvasCharacterRenderer(character));
+                DrawRotatedCharacter(characterRenderer);
             }
+        }
+
+        public static void SyncCharacterRenderers()
+        {
+            if (CharacterRendererIdSum == CharacterFactory.CharacterIdSum) return;
+
+            ClearCharacterRenderers();
+
+            foreach (var character in CharacterFactory.Characters)
+            {
+                CreateCharacterRenderer(character);
+            }
+
+            RecalculateCharacterRendererIdSum();
         }
 
         private static void ClearCanvas()
@@ -134,6 +155,18 @@ namespace ClientScript
 
             // and restore the co-ords to how they were when we began
             _canvasRenderingContext2D.restore();
+        }
+
+        private static void RecalculateCharacterRendererIdSum()
+        {
+            long newSum = 0;
+
+            foreach (var characterRenderer in CharacterRenderers)
+            {
+                newSum += characterRenderer.Character.Id;
+            }
+
+            CharacterRendererIdSum = newSum;
         }
     }
 }
