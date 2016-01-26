@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoManyZombiesServer", "SoManyZombies\SoManyZombiesServer.csproj", "{0701B30B-2C41-482A-B834-D7D63BA3CAD1}"
 EndProject
@@ -26,6 +26,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseClientScript", "BaseClientScript\BaseClientScript.csproj", "{B26F35BD-3815-4BC8-B109-7AB23DD69885}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseClientScriptTests", "BaseClientScriptTests\BaseClientScriptTests.csproj", "{42D20C5C-9ACC-40E4-BAFB-7C0121237C8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{7BD8ED6A-AD09-4E30-9748-DF0D843731DF}"
+	ProjectSection(SolutionItems) = preProject
+		server-rebuild.sh = server-rebuild.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
