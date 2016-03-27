@@ -76,6 +76,8 @@ namespace ClientScript
 
         public static void ProcessPlayerMovementInput()
         {
+            if (CharacterFactory.GetLocalPlayerCharacter() == null) return;
+
             if (_pressedKeys.Contains(_playerMovementKeys["Left"])) MovePlayerLeft();
 
             if (_pressedKeys.Contains(_playerMovementKeys["Right"])) MovePlayerRight();

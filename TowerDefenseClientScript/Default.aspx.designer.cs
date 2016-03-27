@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SMZLib
+namespace TowerDefenseClientScript
 {
 
 

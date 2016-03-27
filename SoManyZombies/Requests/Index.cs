@@ -17,7 +17,7 @@ namespace SoManyZombies.Requests
                 StatusCode = HttpStatusCode.OK
             };
             */
-            return "<script type=\"text\\javascript\">alert('sup');</script>";
+            return "<body><script type=\"text\\javascript\">alert('sup');</script></body>";
         } 
     }
 }

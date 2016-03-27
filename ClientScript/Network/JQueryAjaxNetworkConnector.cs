@@ -10,7 +10,7 @@ namespace ClientScript.Network
         {
             var ajaxSettings = new AjaxSettings
             {
-                url = "localhost:1337/" + command,
+                url = "http://localhost:1337/" + command,
                 cache = false,
                 data = data,
                 dataType = "",
@@ -24,7 +24,7 @@ namespace ClientScript.Network
         {
             var ajaxSettings = new AjaxSettings
             {
-                url = "localhost:1337/" + query,
+                url = "http://localhost:1337/" + query,
                 cache = false,
                 data = data,
                 dataType = "",

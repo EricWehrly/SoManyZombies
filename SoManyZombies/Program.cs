@@ -11,14 +11,14 @@ namespace SoManyZombies
 
         public static void Main()
         {
-            StartGameLoop();
+            // StartGameLoop();
 
             StartGameServer();
         }
 
         private static void StartGameServer()
         {
-            const string nancyUri = "http://localhost:8080/";
+            const string nancyUri = "http://localhost:1337/";
 
             using (var host = new NancyHost(new Uri(nancyUri)))
             {

@@ -10,8 +10,6 @@ namespace ServerTests
 {
     public class ConnectionTests
     {
-        private Browser _browser;
-
         [SetUp]
         public void SetUp()
         {
@@ -45,9 +43,11 @@ namespace ServerTests
         [Test]
         public void ConnectingPlayerIsAddedToPlayerPool()
         {
-            var browser = new Browser(with => with.Module<InitialConnect>());
+            // var browser = new Browser(with => with.Module<InitialConnect>());
 
-            browser.Get("/InitialConnect", with => with.HttpRequest());
+            // browser.Get("/InitialConnect", with => with.HttpRequest());
+
+            InitialConnect();
 
             CharacterFactory.Players.Length.Should().Be(1);
         }
@@ -95,7 +95,7 @@ namespace ServerTests
         {
             var browser = new Browser(with => with.Module<InitialConnect>());
 
-            var result = browser.Get("/InitialConnect", with => with.HttpRequest());
+            browser.Get("/InitialConnect", with => with.HttpRequest());
 
             //return JsonConvert.DeserializeObject<ConnectPacket>(result.Body.AsString());
         }

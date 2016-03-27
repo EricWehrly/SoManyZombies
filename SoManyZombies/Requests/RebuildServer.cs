@@ -8,7 +8,7 @@ namespace SoManyZombies.Requests
     {
         public RebuildServer()
         {
-            Get["/"] = LaunchRebuildScript;
+            Get["/Rebuild"] = LaunchRebuildScript;
         }
 
         private object LaunchRebuildScript(dynamic parameters)
