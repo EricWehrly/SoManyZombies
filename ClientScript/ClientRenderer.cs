@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SharpKit.Html;
 using SharpKit.JavaScript;
 using SMZLib;
@@ -13,7 +14,7 @@ namespace ClientScript
         private static List<CanvasCharacterRenderer> _characterRenderers;
         //private static Dictionary<int, CanvasCharacterRenderer> _characterRenderers;
 
-        public static long CharacterRendererIdSum { get; private set; }
+        public static DateTime LastUpdate { get; private set; }
 
         // Make some unit tests to make sure that this thing has comperable contents to the character list
         //public static List<CanvasCharacterRenderer> CharacterRenderers { get { return new List<CanvasCharacterRenderer>(_characterRenderers.Values); } }
@@ -106,7 +107,7 @@ namespace ClientScript
 
         public static void SyncCharacterRenderers()
         {
-            if (CharacterRendererIdSum == CharacterFactory.CharacterIdSum) return;
+            if (LastUpdate == CharacterFactory.LastUpdate) return;
 
             ClearCharacterRenderers();
 
@@ -115,7 +116,7 @@ namespace ClientScript
                 CreateCharacterRenderer(character);
             }
 
-            RecalculateCharacterRendererIdSum();
+            LastUpdate = DateTime.Now;
         }
 
         private static void ClearCanvas()
@@ -155,18 +156,6 @@ namespace ClientScript
 
             // and restore the co-ords to how they were when we began
             _canvasRenderingContext2D.restore();
-        }
-
-        private static void RecalculateCharacterRendererIdSum()
-        {
-            long newSum = 0;
-
-            foreach (var characterRenderer in CharacterRenderers)
-            {
-                newSum += characterRenderer.Character.Id;
-            }
-
-            CharacterRendererIdSum = newSum;
         }
     }
 }

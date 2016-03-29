@@ -1,4 +1,5 @@
-﻿using SharpKit.JavaScript;
+﻿using System;
+using SharpKit.JavaScript;
 using SMZLib.Factories;
 
 namespace SMZLib.Entities
@@ -6,11 +7,9 @@ namespace SMZLib.Entities
     [JsType(JsMode.Clr, Filename = "../res/Entities.js")]
     public class Character
     {
-        private static int _characterCount;
-
         private int _health = 100;
 
-        public int Id { get; private set; }
+        public Guid Id { get; set; }
 
         public Point Position { get; set; }
 
@@ -38,9 +37,7 @@ namespace SMZLib.Entities
 
             Height = 1;
 
-            //Id = _characterCount++;
-            _characterCount += 1;
-            Id = _characterCount;
+            Id = Guid.Empty;
         }
 
         public int Health

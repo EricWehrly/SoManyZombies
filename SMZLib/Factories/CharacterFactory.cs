@@ -11,7 +11,7 @@ namespace SMZLib.Factories
     {
         private static Dictionary<string, Character> _playerCharacters = new Dictionary<string, Character>();
 
-        private static Dictionary<int, Character> _projectiles = new Dictionary<int, Character>();
+        private static Dictionary<Guid, Character> _projectiles = new Dictionary<Guid, Character>();
 
         public static Character[] Players { get { return _playerCharacters.Values.ToArray(); } }
 
@@ -19,7 +19,7 @@ namespace SMZLib.Factories
 
         public static Character[] Characters { get { return Players.Concat(Projectiles).ToArray(); } }
 
-        public static long CharacterIdSum { get; private set; }
+        public static DateTime LastUpdate { get; private set; }
 
         private static int _nextPlayerId;
 
@@ -46,9 +46,11 @@ namespace SMZLib.Factories
 
             var newCharacter = new Character();
 
+            newCharacter.Id = Guid.NewGuid();
+
             _playerCharacters.Add(playerGuid, newCharacter);
 
-            RecalculateCharacterIdSum();
+            LastUpdate = DateTime.Now;
 
             return playerGuid;
         }
@@ -57,17 +59,17 @@ namespace SMZLib.Factories
         {
             _playerCharacters = new Dictionary<string, Character>();
 
-            RecalculateCharacterIdSum();
+            LastUpdate = DateTime.Now;
         }
 
         public static void ClearProjectiles()
         {
-            _projectiles = new Dictionary<int, Character>();
+            _projectiles = new Dictionary<Guid, Character>();
 
-            RecalculateCharacterIdSum();
+            LastUpdate = DateTime.Now;
         }
 
-        public static int CreateProjectile(Character owner, float speed)
+        public static Guid CreateProjectile(Character owner, float speed)
         {
             var projectile = new Character
             {
@@ -77,18 +79,19 @@ namespace SMZLib.Factories
                 Speed = speed,
                 Health = 10
             };
+            projectile.Id = Guid.NewGuid();
             //projectile.Health = 10;
 
             _projectiles.Add(owner.Id, projectile);
 
-            RecalculateCharacterIdSum();
+            LastUpdate = DateTime.Now;
 
             return projectile.Id;
         }
 
         public static void KillCharacter(Character character)
         {
-            foreach (KeyValuePair<int, Character> projectile in _projectiles)
+            foreach (KeyValuePair<Guid, Character> projectile in _projectiles)
             {
                 if (projectile.Value == character)
                 {
@@ -108,19 +111,7 @@ namespace SMZLib.Factories
                 }
             }
 
-            RecalculateCharacterIdSum();
-        }
-
-        private static void RecalculateCharacterIdSum()
-        {
-            long newSum = 0;
-
-            foreach (var character in Characters)
-            {
-                newSum += character.Id;
-            }
-
-            CharacterIdSum = newSum;
+            LastUpdate = DateTime.Now;
         }
     }
 }

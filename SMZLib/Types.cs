@@ -1,4 +1,5 @@
-﻿using SharpKit.JavaScript;
+﻿using System;
+using SharpKit.JavaScript;
 
 namespace SMZLib
 {
@@ -60,6 +61,6 @@ namespace SMZLib
     public struct ConnectPacket
     {
         public string SessionId;
-        public int CharacterId;
+        public Guid CharacterId;
     }
 }
