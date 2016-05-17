@@ -23,8 +23,9 @@ namespace SoManyZombies
             using (var host = new NancyHost(new Uri(nancyUri)))
             {
                 host.Start();
-
+#if DEBUG
                 Process.Start(nancyUri);
+#endif
 
                 Console.ReadLine();
 

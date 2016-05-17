@@ -16,9 +16,6 @@ namespace SoManyZombies.Requests
         private Response InitialConnectResponse(dynamic parameters)
         {
             var newPlayer = CharacterFactory.AddPlayer();
-            //GameData.Players.Add(new Character());
-
-            // GameData.Players[GameData.Players.Count - 1].Id = GameData.NextPlayerId;
 
             var returnVal = new ConnectPacket
             {

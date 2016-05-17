@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterFactoryTests.cs" />
     <Compile Include="ClientScriptTest.cs" />
     <Compile Include="EntityMovementTests.cs" />
     <Compile Include="FullAgentFunctions\FullAgentInputTests.cs" />
