@@ -98,6 +98,7 @@ namespace ServerTests
             _playerOne.Position.X.Should().Be(expectedPositionX);
         }
 
+        [Ignore("Empty")]
         [Test]
         public void PlayersWillMoveTowardGreaterDisplacement()
         {
@@ -106,6 +107,7 @@ namespace ServerTests
             Assert.Fail();
         }
 
+        [Ignore("Unfinished")]
         [Test]
         public void ProjectilesWillCollideWithOtherPlayers()
         {
@@ -126,7 +128,7 @@ namespace ServerTests
             Assert.Fail();
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void ProjectilesWillNotCollideWithTheirOwner()
         {

@@ -4,18 +4,21 @@ namespace ClientScriptTests
 {
     public class NetworkTests
     {
+        [Ignore("Empty")]
         [Test]
         public void WillSendConnectQueryToServer()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void ProcessNewPlayersFromConnectionResponsePacket()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void DesiredDirectionChangeSendsNetworkUpdate()
         {
@@ -26,36 +29,42 @@ namespace ClientScriptTests
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void FacingDirectionChangeSendsNetworkUpdate()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void WillQueryForNetworkUpdateRegularly()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void WillGetNewPlayersFromNetworkUpdate()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void WillUpdateExistingPlayerPositionsFromNetworkUpdate()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void WillUpdateExistingPlayerDesiredDirectionsFromNetworkUpdate()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void WillUpdateExistingPlayerFacingDirectionsFromNetworkUpdate()
         {

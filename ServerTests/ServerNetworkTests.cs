@@ -147,7 +147,7 @@ namespace ServerTests
             dataPlayerDestination.Y.Should().Be(initialDestination.Y);
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void UpdatingWithInvalidSessionTokenTerminatesClientConnection()
         {
@@ -157,22 +157,22 @@ namespace ServerTests
 
             // response.Should().Be("Something about informing the client to reconnect.");
         }
-        
-        [Ignore]
+
+        [Ignore("Empty")]
         [Test]
         public void UpdatingWrongCharacterWillFail()
         {
             // Mismatch session token and character id
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void ClientCommandsWillBeRateLimited()
         {
             
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void AdminCanSetFakePlayerCount()
         {

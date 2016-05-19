@@ -184,6 +184,7 @@ namespace ClientScriptTests.FullAgentFunctions
             CharacterFactory.GetLocalPlayerCharacter().LookTarget.Y.Should().Be(expectedY);
         }
 
+        [Ignore("Empty")]
         [Test]
         public void RightClickCreatesProjectile()
         {
@@ -194,7 +195,7 @@ namespace ClientScriptTests.FullAgentFunctions
             // Should move as any entity moves
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void HoldingMouseAndMovingItChangesDestination()
         {

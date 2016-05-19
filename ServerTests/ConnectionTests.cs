@@ -70,14 +70,14 @@ namespace ServerTests
             decodedResult.Length.Should().Be(initialPlayerCount + 1);
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void ClientConnectionTimesOut()
         {
 
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void ClientCanManuallyDisconnect()
         {

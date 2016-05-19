@@ -25,13 +25,14 @@ namespace ClientScriptTests.FullAgentFunctions
             ClientRenderer.SyncCharacterRenderers();
         }
 
+        [Ignore("Empty")]
         [Test]
-        [Ignore]
         public void ShouldProduceOrderedCharacterIds()
         {
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
         public void OrderedCharacterIdsShouldMatchCharacterFactory()
         {
@@ -124,7 +125,7 @@ namespace ClientScriptTests.FullAgentFunctions
             VerifyPlayerX(expectedPlayerX);
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void LocalPlayerOffscreenYTest()
         {
@@ -137,7 +138,7 @@ namespace ClientScriptTests.FullAgentFunctions
             VerifyPlayerY(expectedPlayerY);
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void LocalPlayerNegativeYTest()
         {
@@ -150,7 +151,7 @@ namespace ClientScriptTests.FullAgentFunctions
             VerifyPlayerY(expectedPlayerY);
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void LocalPlayerVeryNegativeYTest()
         {
@@ -163,6 +164,7 @@ namespace ClientScriptTests.FullAgentFunctions
             VerifyPlayerY(expectedPlayerY);
         }
 
+        [Ignore("Empty")]
         [Test]
         public void PlayerSpriteFacesPlayerFacingDirection()
         {
@@ -171,7 +173,7 @@ namespace ClientScriptTests.FullAgentFunctions
 
         // Stop
 
-        [Ignore]    // Current system doesn't support this granularity in position
+        [Ignore("Empty")]  // Current system doesn't support this granularity in position
         [Test]
         public void LocalPlayerPartialOffscreenXTest()
         {
@@ -180,7 +182,7 @@ namespace ClientScriptTests.FullAgentFunctions
             Assert.Fail("Not implemented.");
         }
 
-        [Ignore]
+        [Ignore("Empty")]
         [Test]
         public void CameraFollowsLocalPlayer()
         {
@@ -205,8 +207,8 @@ namespace ClientScriptTests.FullAgentFunctions
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
-        [Ignore]
         public void RendererCountMatchesCharacterCountWithTwoCharacters()
         {
             // Make character 1
@@ -218,8 +220,8 @@ namespace ClientScriptTests.FullAgentFunctions
             Assert.Fail();
         }
 
+        [Ignore("Empty")]
         [Test]
-        [Ignore]
         public void RendererCountMatchesCharacterCountAfterKilledCharacters()
         {
             // Make character 1, 2, 3
